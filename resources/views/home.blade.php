@@ -7,12 +7,23 @@
     <section id="hero" class="splide" aria-label="Hero Image">
         <div class="splide__track">
             <ul class="splide__list">
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/1.jpg') }})">
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/3.jpg') }})">
+                    {{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt="Sample Image"> --}}
+                    <div class="hero-content">
+                        <div>
+                            <h3><strong>kenal lebih dekat!</strong></h3>
+                            <p class="fw-light">Baca informasi kami lebih banyak</p>
+                            <a href="/artikel" class="btn btn-sm btn-outline-light border-2">Lihat Artikel <i
+                                    class="mdi mdi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/1.jpeg') }})">
                     {{-- <img class="img-fluid" src="{{ asset('images/1.jpg') }}" alt="Sample Image"> --}}
                     <div class="hero-content">
                         <div>
-                            <h2><strong>Selamat Datang di Pusaka Indatu</strong></h2>
-                            <p>Sajian kuliner khas</p>
+                            <h3><strong>Selamat Datang</strong></h3>
+                            <p class="fw-light">di Pusaka Indatu Kuliner</p>
                             <a href="/kuliner" class="btn btn-sm btn-outline-light border-2">Explore Kuliner <i
                                     class="mdi mdi-arrow-right"></i></a>
                         </div>
@@ -22,20 +33,9 @@
                     {{-- <img class="img-fluid" src="{{ asset('images/2.jpg') }}" alt="Sample Image"> --}}
                     <div class="hero-content">
                         <div>
-                            <h2><strong>Pusaka Indatu</strong></h2>
-                            <p>Bumbu Aceh siap dimasak</p>
+                            <h3><strong>Pusaka Indatu</strong></h3>
+                            <p class="fw-light">Sedia Bumbu Aceh siap dimasak</p>
                             <a href="/produk" class="btn btn-sm btn-outline-light border-2">Explore produk <i
-                                    class="mdi mdi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </li>
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/2.jpg') }})">
-                    {{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt="Sample Image"> --}}
-                    <div class="hero-content">
-                        <div>
-                            <h2><strong>Pusaka Indatu</strong></h2>
-                            <p>Bumbu Aceh siap dimasak</p>
-                            <a href="/kuliner" class="btn btn-sm btn-outline-light border-2">Explore Kuliner <i
                                     class="mdi mdi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
             padding-left: 50px;
             align-items: center;
             background: rgb(2, 0, 36);
-            background: linear-gradient(207deg, transparent 0%, rgba(2, 0, 36, 0) 30%, #ffc107 100%);
+            background: linear-gradient(207deg, transparent 0%, rgba(2, 0, 36, 0) 30%, #000000 100%);
         }
 
         #hero .splide__track {
@@ -191,7 +191,7 @@
             }
 
             #hero .hero-content {
-                padding-left: 20px;
+                padding-left: 30px;
             }
         }
 
