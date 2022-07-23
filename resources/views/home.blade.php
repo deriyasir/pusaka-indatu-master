@@ -183,7 +183,11 @@
 
         @media (max-width: 768px) {
             #hero .splide__slide {
-                height: 200px;
+                height: 230px;
+            }
+
+            #hero .splide__pagination {
+                display: none;
             }
         }
 
