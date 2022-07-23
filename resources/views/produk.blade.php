@@ -4,7 +4,7 @@
 
 @section('content')
     <section>
-        <div class="mb-2">
+        <div class="mb-2 d-none d-md-inline">
             <h4 class="text-muted">Produk</h4>
         </div>
         <div id="produk" class="row">
@@ -22,8 +22,7 @@
                         </div>
                         <div class="text-center">
                             <a href="{{ route('add-to-cart', $product) }}"
-                                class="btn btn-sm btn-outline-warning mb-2 w-100"><i class="mdi mdi-cart-outline"></i>
-                                Tambah
+                                class="btn btn-sm btn-outline-warning mb-2 w-100"><i class="fas fa-fw fa-plus"></i>
                                 Keranjang
                             </a>
                         </div>

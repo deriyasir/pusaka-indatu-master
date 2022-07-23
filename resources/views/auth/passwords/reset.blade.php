@@ -72,7 +72,7 @@
         </div>
     </div> --}}
     <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="content-wrapper d-flex bg-white align-items-center auth px-0">
             <div class="row w-100 mx-0">
                 <div class="col-lg-4 mx-auto">
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5 text-center">
@@ -120,9 +120,9 @@
                                 </div>
                             </div> --}}
                             <div class="form-group">
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus
-                                    placeholder="Email Address">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ $email ?? old('email') }}" required autocomplete="email"
+                                    autofocus placeholder="Email Address">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -131,8 +131,8 @@
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    name="password" value="{{ old('password') }}" required autocomplete="password"
-                                    autofocus placeholder="New Password">
+                                    name="password" value="{{ old('password') }}" required autocomplete="password" autofocus
+                                    placeholder="New Password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
