@@ -83,7 +83,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('cart') }}" class="nav-link">
                                         <i class="fas fa-fw fa-cart-shopping"></i>
-                                        <span class="badge bg-warning">{{ auth()->user()->cart()->count() }}</span>
+                                        <span class="badge bg-warning">{{ auth()->user()->cart()->count() ?? '-' }}</span>
                                     </a>
                                 </li>
                             @endcan
