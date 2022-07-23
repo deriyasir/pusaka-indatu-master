@@ -181,6 +181,12 @@
             background-color: aliceblue;
         }
 
+        @media (max-width: 768px) {
+            #hero .splide__slide {
+                height: 200px;
+            }
+        }
+
         #hero .splide__pagination__page.is-active {
             background-color: #ED6D45 !important;
             color: #fff !important;
