@@ -147,20 +147,20 @@
 
         <footer class="d-block d-md-none fixed-bottom shadow-md">
             <div class="d-flex bg-warning align-items-end">
-                <a href="{{ route('kuliner') }}" class="p-3 text-center w-100 text-white">
-                    <h5><i class="fas fa-fw fa-bowl-food"></i></h5>
+                <a href="{{ route('kuliner') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-bowl-food"></i></h6>
                 </a>
-                <a href="{{ route('produk') }}" class="p-3 text-center w-100 text-white">
-                    <h5><i class="fas fa-fw fa-boxes-stacked"></i></h5>
+                <a href="{{ route('produk') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-boxes-stacked"></i></h6>
                 </a>
-                <a href="{{ route('home') }}" class="p-3 text-center w-100 text-white">
-                    <h5><i class="fas fa-fw fa-home"></i></h5>
+                <a href="{{ route('home') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-home"></i></h6>
                 </a>
-                <a href="{{ route('artikel') }}" class="p-3 text-center w-100 text-white">
-                    <h5><i class="fas fa-fw fa-newspaper"></i></h5>
+                <a href="{{ route('artikel') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-newspaper"></i></h6>
                 </a>
-                <a href="{{ route('profil') }}" class="p-3 text-center w-100 text-white">
-                    <h5><i class="fas fa-fw fa-user"></i></h5>
+                <a href="{{ route('profil') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-user"></i></h6>
                 </a>
             </div>
         </footer>
