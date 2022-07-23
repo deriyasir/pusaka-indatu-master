@@ -121,7 +121,7 @@
                 </div>
             </div>
         </nav>
-        <nav class="navbar d-block d-md-none bg-white">
+        <nav class="navbar d-block d-md-none bg-white mt-3">
             <div class="d-flex justify-content-between align-items-center py-2 px-3">
                 <a href="{{ url('/') }}">
                     <img src="{{ asset('admin/images/logo.svg') }}" alt="logo" height="30" />
