@@ -189,6 +189,10 @@
             #hero .splide__pagination {
                 display: none;
             }
+
+            #hero .hero-content {
+                padding-left: 20px;
+            }
         }
 
         #hero .splide__pagination__page.is-active {
