@@ -4,10 +4,12 @@
 
 @section('content')
     <section>
-        <div class="mb-2">
-            <h6 class="text-muted">Profil</h6>
+        <div class="d-none d-md-block">
+            <div class="mb-2">
+                <h6 class="text-muted">Profil</h6>
+            </div>
+            <hr>
         </div>
-        <hr>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -135,8 +137,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (auth()->user()->orders()->latest()->get()
-        as $order)
+                    @foreach (auth()->user()->orders()->latest()->get() as $order)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td class="fw-bold">{{ $order->no_order }}</td>
