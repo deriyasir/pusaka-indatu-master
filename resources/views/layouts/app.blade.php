@@ -82,7 +82,7 @@
                             @can('is_user')
                                 <li class="nav-item">
                                     <a href="{{ route('cart') }}" class="nav-link">
-                                        <i class="mdi mdi-cart-outline"></i>
+                                        <i class="fas fa-fw fa-cart-shopping"></i>
                                         <span class="badge bg-warning">{{ auth()->user()->cart()->count() }}</span>
                                     </a>
                                 </li>
@@ -129,7 +129,7 @@
                 {{-- @auth --}}
                 {{-- @can('is_user') --}}
                 <a href="{{ route('cart') }}" class="text-dark">
-                    <i class="mdi mdi-cart-outline"></i>
+                    <i class="fas fa-fw fa-cart-shopping"></i>
                     <span class="badge bg-warning">{{ '0' }}</span>
                 </a>
                 {{-- @endcan --}}
