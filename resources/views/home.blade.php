@@ -7,7 +7,7 @@
     <section id="hero" class="splide" aria-label="Hero Image">
         <div class="splide__track">
             <ul class="splide__list">
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/3.jpg') }})">
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/selamat-datang.jpg') }})">
                     {{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt="Sample Image"> --}}
                     <div class="hero-content">
                         <div>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/1.jpeg') }})">
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/kuliner.jpeg') }})">
                     {{-- <img class="img-fluid" src="{{ asset('images/1.jpg') }}" alt="Sample Image"> --}}
                     <div class="hero-content">
                         <div>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/2.jpg') }})">
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/bumbu.jpg') }})">
                     {{-- <img class="img-fluid" src="{{ asset('images/2.jpg') }}" alt="Sample Image"> --}}
                     <div class="hero-content">
                         <div>
