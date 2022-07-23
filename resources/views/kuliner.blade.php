@@ -4,7 +4,7 @@
 
 @section('content')
     <section>
-        <div class="mb-2">
+        <div class="mb-2 d-none d-md-inline">
             <h4 class="text-muted">Kuliner</h4>
         </div>
         <div id="kuliner" class="row">

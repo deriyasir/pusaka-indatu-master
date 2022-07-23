@@ -7,35 +7,35 @@
     <section id="hero" class="splide" aria-label="Hero Image">
         <div class="splide__track">
             <ul class="splide__list">
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/1.jpg') }})">
-                    {{-- <img class="img-fluid" src="{{ asset('images/1.jpg') }}" alt="Sample Image"> --}}
-                    <div class="hero-content">
-                        <div>
-                            <h2><strong>Selamat Datang di Pusaka Indatu</strong></h2>
-                            <p>Sajian kuliner khas</p>
-                            <a href="/kuliner" class="btn btn-sm btn-outline-light border-2">Explore Kuliner <i
-                                    class="mdi mdi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </li>
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/2.jpg') }})">
-                    {{-- <img class="img-fluid" src="{{ asset('images/2.jpg') }}" alt="Sample Image"> --}}
-                    <div class="hero-content">
-                        <div>
-                            <h2><strong>Pusaka Indatu</strong></h2>
-                            <p>Bumbu Aceh siap dimasak</p>
-                            <a href="/produk" class="btn btn-sm btn-outline-light border-2">Explore produk <i
-                                    class="mdi mdi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </li>
-                <li class="splide__slide hero" style="background-image: url({{ asset('images/2.jpg') }})">
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/selamat-datang.jpg') }})">
                     {{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt="Sample Image"> --}}
                     <div class="hero-content">
                         <div>
-                            <h2><strong>Pusaka Indatu</strong></h2>
-                            <p>Bumbu Aceh siap dimasak</p>
+                            <h3><strong>kenal lebih dekat!</strong></h3>
+                            <p class="fw-light">Baca informasi kami lebih banyak</p>
+                            <a href="/artikel" class="btn btn-sm btn-outline-light border-2">Lihat Artikel <i
+                                    class="mdi mdi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/kuliner.jpeg') }})">
+                    {{-- <img class="img-fluid" src="{{ asset('images/1.jpg') }}" alt="Sample Image"> --}}
+                    <div class="hero-content">
+                        <div>
+                            <h3><strong>Selamat Datang</strong></h3>
+                            <p class="fw-light">di Pusaka Indatu Kuliner</p>
                             <a href="/kuliner" class="btn btn-sm btn-outline-light border-2">Explore Kuliner <i
+                                    class="mdi mdi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide hero" style="background-image: url({{ asset('images/bumbu.jpg') }})">
+                    {{-- <img class="img-fluid" src="{{ asset('images/2.jpg') }}" alt="Sample Image"> --}}
+                    <div class="hero-content">
+                        <div>
+                            <h3><strong>Pusaka Indatu</strong></h3>
+                            <p class="fw-light">Sedia Bumbu Aceh siap dimasak</p>
+                            <a href="/produk" class="btn btn-sm btn-outline-light border-2">Explore produk <i
                                     class="mdi mdi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -48,9 +48,10 @@
     <section class="mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h6 class="text-muted m-0">Produk Bumbu</h4>
-            @if ($products->count() > 5)
-                <a href="{{ route('produk') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan Semua</a>
-            @endif
+                @if ($products->count() > 5)
+                    <a href="{{ route('produk') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan
+                        Semua</a>
+                @endif
         </div>
         <div id="produk" class="splide" aria-label="Produk Terbaru">
             <div class="splide__track py-2">
@@ -60,8 +61,8 @@
                             <div class="shadow-sm p-2 rounded">
                                 <a class="d-flex justify-content-center align-items-center" style="overflow: hidden;"
                                     href="{{ route('produk.detail', $product) }}">
-                                    <img src="{{ asset('storage/products/' . $product->image) }}"
-                                        class="img-fluid rounded" alt="Product Image">
+                                    <img src="{{ asset('storage/products/' . $product->image) }}" class="img-fluid rounded"
+                                        alt="Product Image">
                                 </a>
                                 <div class="text-center py-3">
                                     <p class="m-0">{{ $product->name }}</p>
@@ -69,8 +70,8 @@
                                 </div>
                                 <div class="text-center mb-2">
                                     <a href="{{ route('add-to-cart', $product) }}"
-                                        class="btn btn-sm btn-outline-warning mb-2 w-100"><i
-                                            class="mdi mdi-cart-outline"></i> Tambah Keranjang
+                                        class="btn btn-sm btn-outline-warning mb-2 w-100"><i class="fas fa-fw fa-plus"></i>
+                                        Keranjang
                                     </a>
                                 </div>
                             </div>
@@ -82,15 +83,15 @@
         </div>
     </section>
 
-     {{-- kuliner --}}
+    {{-- kuliner --}}
     <section class="mt-5">
         <div class="d-flex" style="align-items: center; justify-content: space-between">
             <h6 class="text-muted m-0">Kuliner Aceh</h4>
-            @if ($kuliner->count() > 5)
-                <a href="{{ route('kuliner') }}" class="text-dark">
-                    <i class="mdi mdi-arrow-right"></i> Tampilkan Semua
-                </a>
-            @endif
+                @if ($kuliner->count() > 5)
+                    <a href="{{ route('kuliner') }}" class="text-dark">
+                        <i class="mdi mdi-arrow-right"></i> Tampilkan Semua
+                    </a>
+                @endif
         </div>
         <div id="kuliner" class="splide" aria-label="Kulier Terbaru">
             <div class="splide__track py-2">
@@ -139,7 +140,7 @@
             padding-left: 50px;
             align-items: center;
             background: rgb(2, 0, 36);
-            background: linear-gradient(207deg, transparent 0%, rgba(2, 0, 36, 0) 30%, #ffc107 100%);
+            background: linear-gradient(207deg, transparent 0%, rgba(2, 0, 36, 0) 30%, #000000 100%);
         }
 
         #hero .splide__track {
@@ -178,6 +179,20 @@
             width: 100%;
             position: relative;
             background-color: aliceblue;
+        }
+
+        @media (max-width: 768px) {
+            #hero .splide__slide {
+                height: 230px;
+            }
+
+            #hero .splide__pagination {
+                display: none;
+            }
+
+            #hero .hero-content {
+                padding-left: 30px;
+            }
         }
 
         #hero .splide__pagination__page.is-active {

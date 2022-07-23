@@ -4,11 +4,11 @@
 
 @section('body')
     <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="content-wrapper bg-white d-flex align-items-center auth px-0">
             <div class="row w-100 mx-0">
                 <div class="col-lg-4 mx-auto">
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5 text-center">
-                        <a href="{{ route("home") }}" class="brand-logo d-flex justify-content-center">
+                        <a href="{{ route('home') }}" class="brand-logo d-flex justify-content-center">
                             <img src="{{ asset('admin/images/logo.svg') }}" alt="logo">
                         </a>
                         <h4>Silahkan Login Disini!</h4>
@@ -18,8 +18,7 @@
                             <div class="form-group">
                                 <input id="email" type="email"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus
-                                    placeholder="Email">
+                                    value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

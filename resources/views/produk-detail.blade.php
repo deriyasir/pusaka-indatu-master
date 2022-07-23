@@ -91,8 +91,8 @@
                             <div class="shadow-sm p-2 rounded">
                                 <a class="d-flex justify-content-center align-items-center" style="overflow: hidden;"
                                     href="{{ route('produk.detail', $product) }}">
-                                    <img src="{{ asset('storage/products/' . $product->image) }}"
-                                        class="img-fluid rounded" alt="Product Image">
+                                    <img src="{{ asset('storage/products/' . $product->image) }}" class="img-fluid rounded"
+                                        alt="Product Image">
                                 </a>
                                 <div class="text-center py-3">
                                     <p class="m-0">{{ $product->name }}</p>
@@ -100,8 +100,8 @@
                                 </div>
                                 <div class="text-center mb-2">
                                     <a href="{{ route('add-to-cart', $product) }}"
-                                        class="btn btn-sm btn-outline-warning mb-2 w-100"><i
-                                            class="mdi mdi-cart-outline"></i> Tambah Keranjang
+                                        class="btn btn-sm btn-outline-warning mb-2 w-100"><i class="fas fa-fw fa-plus"></i>
+                                        Keranjang
                                     </a>
                                 </div>
                             </div>

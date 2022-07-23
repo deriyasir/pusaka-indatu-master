@@ -16,6 +16,9 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="{{ asset('admin/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -30,7 +33,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-none d-md-block">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('admin/images/logo.svg') }}" alt="logo" height="30" />
@@ -40,7 +43,6 @@
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -61,7 +63,6 @@
                                 class="nav-link {{ Request::is('artikel*') ? 'active' : '' }}">{{ __('Artikel') }}</a>
                         </li>
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -81,7 +82,7 @@
                             @can('is_user')
                                 <li class="nav-item">
                                     <a href="{{ route('cart') }}" class="nav-link">
-                                        <i class="mdi mdi-cart-outline"></i>
+                                        <i class="fas fa-fw fa-cart-shopping"></i>
                                         <span class="badge bg-warning">{{ auth()->user()->cart()->count() }}</span>
                                     </a>
                                 </li>
@@ -120,6 +121,21 @@
                 </div>
             </div>
         </nav>
+        <nav class="navbar d-block d-md-none bg-white mt-3">
+            <div class="d-flex justify-content-between align-items-center py-2 px-3">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('admin/images/logo.svg') }}" alt="logo" height="30" />
+                </a>
+                {{-- @auth --}}
+                {{-- @can('is_user') --}}
+                <a href="{{ route('cart') }}" class="text-dark">
+                    <i class="fas fa-fw fa-cart-shopping"></i>
+                    <span class="badge bg-warning">{{ auth()->user()->cart()->count() }}</span>
+                </a>
+                {{-- @endcan --}}
+                {{-- @endauth --}}
+            </div>
+        </nav>
 
         <main class="py-4">
             <div class="container">
@@ -127,7 +143,29 @@
             </div>
         </main>
 
-        <footer class="text-center text-lg-start bg-light text-muted">
+        <div class="box py-4"></div>
+
+        <footer class="d-block d-md-none fixed-bottom shadow-md">
+            <div class="d-flex bg-warning align-items-end">
+                <a href="{{ route('kuliner') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-bowl-food"></i></h6>
+                </a>
+                <a href="{{ route('produk') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-boxes-stacked"></i></h6>
+                </a>
+                <a href="{{ route('home') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-home"></i></h6>
+                </a>
+                <a href="{{ route('artikel') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-newspaper"></i></h6>
+                </a>
+                <a href="{{ route('profil') }}" class="p-2 text-center w-100 text-white">
+                    <h6><i class="fas fa-fw fa-user"></i></h6>
+                </a>
+            </div>
+        </footer>
+
+        <footer class="text-center text-lg-start bg-light text-muted d-none d-md-block">
             <section class="container d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                 <div class="me-5 d-none d-lg-block">
                     <span>Terhubung dengan kami di social media : </span>
@@ -151,7 +189,8 @@
                             <h6 class="text-uppercase fw-bold mb-4">Pusaka Indatu</h6>
                             <p>
                                 Here you can use rows and columns to organize your footer content. Lorem ipsum
-                                dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, error?
+                                dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Illum, error?
                             </p>
                         </div>
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
