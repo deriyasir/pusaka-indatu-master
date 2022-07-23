@@ -126,14 +126,14 @@
                 <a href="{{ url('/') }}">
                     <img src="{{ asset('admin/images/logo.svg') }}" alt="logo" height="30" />
                 </a>
-                {{-- @auth --}}
-                {{-- @can('is_user') --}}
+                @auth
+                @can('is_user')
                 <a href="{{ route('cart') }}" class="text-dark">
                     <i class="fas fa-fw fa-cart-shopping"></i>
                     <span class="badge bg-warning">{{ auth()->user()->cart()->count() }}</span>
                 </a>
-                {{-- @endcan --}}
-                {{-- @endauth --}}
+                @endcan
+                @endauth
             </div>
         </nav>
 
