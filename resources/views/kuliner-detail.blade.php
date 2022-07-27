@@ -55,7 +55,7 @@
                             <b>Perhatian!</b>
                             <br>
                             <small>
-                                Untuk saat ini cakupan kami hanya untuk wilayah <strong>Sigli</strong> saja.
+                                Untuk saat ini cakupan Order hanya untuk wilayah Kabupaten <strong>Pidie</strong> dan <strong>Pidie Jaya</strong> saja.
                             </small>
                         </p>
                     </div>
@@ -120,11 +120,9 @@
     <hr class="my-4">
     <section class="mt-5">
         <div class="d-flex justify-content-between align-items-center">
-            <h4 class="text-muted">Produk Lainnya</h4>
+            <h6 class="text-muted m-0">Produk Lainnya</h4>
             @if ($kuliners->count() > 4)
-                <a href="{{ route('kuliner') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan
-                    seluruh
-                    kuliner</a>
+                <a href="{{ route('kuliner') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan Semua</a>
             @endif
         </div>
         <div id="kuliner" class="splide" aria-label="Produk Terbaru">

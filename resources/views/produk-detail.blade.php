@@ -77,10 +77,9 @@
     <hr class="my-4">
     <section class="mt-5">
         <div class="d-flex justify-content-between align-items-center">
-            <h4 class="text-muted">Produk Lainnya</h4>
+            <h6 class="text-muted m-0">Produk Lainnya</h4>
             @if ($products->count() > 4)
-                <a href="{{ route('produk') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan seluruh
-                    produk</a>
+                <a href="{{ route('produk') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan Semua</a>
             @endif
         </div>
         <div id="produk" class="splide" aria-label="Produk Terbaru">

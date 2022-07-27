@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-5 col-sm-12">
                     <div class="card p-3 mb-4">
-                        <h5 class="m-0">Informasi anda</h5>
+                        <h5 class="m-0">Informasi Anda :</h5>
                         <hr>
                         <div class="row">
                             <div class="col-sm-4">
@@ -109,7 +109,7 @@
                                 <small>
                                     <strong>Perhatian!</strong> Anda belum mengisi alamat. Silahkan klik
                                     <a style="cursor: pointer" onclick="document.getElementById('addAddress').submit()"
-                                        class="alert-link">disini</a> untuk mengisi alamat.
+                                        class="alert-link">Tambah Alamat</a> untuk mengisi alamat.
                                 </small>
                             </div>
                         @endif

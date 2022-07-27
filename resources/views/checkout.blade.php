@@ -61,7 +61,7 @@
                                     <td class="fw-bold">{{ $order->service }}</td>
                                 </tr>
                                 <tr>
-                                    <td>ETD</td>
+                                    <td>Estimasi</td>
                                     <td class="px-3">:</td>
                                     <td class="fw-bold">{{ $order->etd }}</td>
                                 </tr>
