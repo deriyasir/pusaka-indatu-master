@@ -11,6 +11,13 @@ class Blog extends Model
 
     protected $fillable = ['title', 'slug', 'headline', 'content', 'category', 'product_id', 'image', 'author_id', 'views'];
 
+    public function scopeFilter($query)
+    {
+        return $query->where('title', 'like', '%' . request('cari') . '%')
+            ->orWhere('content', 'like', '%' . request('cari') . '%')
+            ->orWhere('category', 'like', '%' . request('cari') . '%');
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');

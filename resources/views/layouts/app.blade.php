@@ -33,6 +33,7 @@
 
 <body>
     <div id="app">
+        {{-- navbar untuk desktop --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-none d-md-block">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -62,9 +63,13 @@
                             <a href="{{ route('artikel') }}"
                                 class="nav-link {{ Request::is('artikel*') ? 'active' : '' }}">{{ __('Artikel') }}</a>
                         </li>
+                        <li class="mx-2 nav-item">
+                            <a class="nav-link" id="search-btn"><i class="fas fa-fw fa-search"></i></a>
+                        </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav
+                                ms-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -121,21 +126,98 @@
                 </div>
             </div>
         </nav>
+
+        {{-- navbar untuk di mobile --}}
         <nav class="navbar d-block d-md-none bg-white mt-3">
             <div class="d-flex justify-content-between align-items-center py-2 px-3">
                 <a href="{{ url('/') }}">
                     <img src="{{ asset('admin/images/logo.svg') }}" alt="logo" height="30" />
                 </a>
                 @auth
-                @can('is_user')
-                <a href="{{ route('cart') }}" class="text-dark">
-                    <i class="fas fa-fw fa-cart-shopping"></i>
-                    <span class="badge bg-warning">{{ auth()->user()->cart()->count() }}</span>
-                </a>
-                @endcan
+                    @can('is_user')
+                        <a href="{{ route('cart') }}" class="text-dark">
+                            <i class="fas fa-fw fa-cart-shopping"></i>
+                            <span class="badge bg-warning">{{ auth()->user()->cart()->count() }}</span>
+                        </a>
+                    @endcan
                 @endauth
+                @guest
+                    <a href="{{ route('login') }}" class="text-dark">
+                        Login
+                        <i class="fas fa-fw fa-sign-in"></i>
+                    </a>
+                @endguest
             </div>
         </nav>
+
+        <section class="mt-4" id="form-cari">
+            <div class="container">
+                <div class="card">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-0" id="basic-addon1"><i
+                                class="fas fa-fw fa-search"></i></span>
+                        <input type="text" class="form-control bg-white border-0" id="input-cari"
+                            placeholder="Cari sesuatu.." value="{{ request('cari') }}">
+                    </div>
+                    <div id="search-result" class="d-none">
+                        <hr class="my-0">
+                        <div class="d-flex flex-column p-2" style="gap: 5px">
+                            <a class="text-dark" id="cari-produk" href="asd">
+                                <strong><i class="fas fa-fw fa-arrow-right"></i></strong> cari
+                                '<strong><span class="search-value text-primary"></span></strong>' di
+                                <strong>Produk</strong>
+                            </a>
+                            <a class="text-dark" id="cari-kuliner" href="asd">
+                                <strong><i class="fas fa-fw fa-arrow-right"></i></strong> cari
+                                '<strong><span class="search-value text-primary"></span></strong>' di
+                                <strong>Kuliner</strong>
+                            </a>
+                            <a class="text-dark" id="cari-artikel" href="asd">
+                                <strong><i class="fas fa-fw fa-arrow-right"></i></strong> cari
+                                '<strong><span class="search-value text-primary"></span></strong>' di
+                                <strong>Artikel</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            let tombol_search = document.getElementById('search-btn');
+            let form_cari = document.getElementById('form-cari');
+            let input_cari = document.getElementById('input-cari');
+            let search_result = document.getElementById('search-result');
+            let search_value = document.querySelectorAll('.search-value');
+            let cari_produk = document.getElementById('cari-produk');
+            let cari_kuliner = document.getElementById('cari-kuliner');
+            let cari_artikel = document.getElementById('cari-artikel');
+
+            var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+            if (width > 768) {
+                form_cari.classList.add('d-none');
+            }
+
+            tombol_search.addEventListener('click', function() {
+                form_cari.classList.toggle('d-none');
+            });
+
+            input_cari.addEventListener('keyup', function() {
+                let keyword = input_cari.value;
+                if (keyword.length > 0) {
+                    search_result.classList.remove('d-none');
+                    search_value.forEach(function(item) {
+                        item.innerHTML = keyword;
+                    });
+                    cari_produk.href = "{{ route('produk') }}?cari=" + keyword;
+                    cari_kuliner.href = "{{ route('kuliner') }}?cari=" + keyword;
+                    cari_artikel.href = "{{ route('artikel') }}?cari=" + keyword;
+                } else {
+                    search_result.classList.add('d-none');
+                }
+            });
+        </script>
 
         <main class="py-4">
             <div class="container">

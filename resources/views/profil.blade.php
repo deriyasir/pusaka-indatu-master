@@ -20,6 +20,15 @@
                 <strong>Opps!</strong> {{ session('error') }}
             </div>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @if (auth()->user()->email_verified_at == null)
             <div class="alert alert-danger" role="alert">
                 <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
@@ -73,6 +82,20 @@
                                 <p class="text-muted mb-0">{{ auth()->user()->created_at->diffForHumans() }}</p>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <a data-bs-toggle="modal" data-bs-target="#UbahProfil"
+                                    class="btn btn-sm btn-warning
+                                    w-100"><i
+                                        class="fas fa-fw fa-user-edit"></i> Ubah Profil</a>
+                            </div>
+                            <div class="col-6">
+                                <a data-bs-toggle="modal" data-bs-target="#UbahPassword"
+                                    class="btn btn-sm btn-danger w-100"><i class="fas fa-fw fa-user-lock"></i>
+                                    Ubah Password</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-7 col-sm-12">
@@ -105,12 +128,8 @@
                             @endforeach
                         @else
                             <hr>
-                            <div class="alert alert-danger" role="alert">
-                                <small>
-                                    <strong>Perhatian!</strong> Anda belum mengisi alamat. Silahkan klik
-                                    <a style="cursor: pointer" onclick="document.getElementById('addAddress').submit()"
-                                        class="alert-link">Tambah Alamat</a> untuk mengisi alamat.
-                                </small>
+                            <div class="text-center py-5">
+                                <p class="text-muted mb-0">Anda belum memiliki alamat</p>
                             </div>
                         @endif
                     </div>
@@ -118,6 +137,72 @@
             </div>
         </section>
     </section>
+
+    <!-- Ubah Profil -->
+    <div class="modal fade" id="UbahProfil" tabindex="-1" aria-labelledby="UbahProfilLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UbahProfilLabel">Ubah Profil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('ubah-profil') }}" method="post" id="ubahpasswordid">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="email" class="form-control" id="name" placeholder="Masukan Nama Anda"
+                                value="{{ auth()->user()->name }}" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Nomor Telepon</label>
+                            <input type="email" class="form-control" id="phone"
+                                placeholder="Masukan Nomor Telepon Anda" value="{{ auth()->user()->phone }}"
+                                name="phone">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning"
+                        onclick="document.getElementById('ubahpasswordid').submit()">Ubah Profil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ubah Password -->
+    <div class="modal fade" id="UbahPassword" tabindex="-1" aria-labelledby="UbahPasswordLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UbahPasswordLabel">Ubah Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('ganti-password') }}" method="post" id="gantipasswordid">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password"
+                                placeholder="Masukan password baru" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="password_confirmation"
+                                placeholder="Konfirmasi password baru" name="password_confirmation">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning"
+                        onclick="document.getElementById('gantipasswordid').submit()">Ubah Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <section>
         <div class="mb-2">
@@ -183,6 +268,19 @@
                 }
             </style>
         </div>
+    </section>
+
+    <section class="d-block d-md-none">
+        <a class="btn btn-danger mt-3 w-100" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+            <i class="mdi mdi-logout"></i>
+            {{ __('Logout') }}
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
     </section>
 
 @endsection
