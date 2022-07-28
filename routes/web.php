@@ -58,7 +58,7 @@ Route::post('/kuliner/{kuliner:slug}', function (Food $kuliner) {
     $harga = $kuliner->price;
     $total = 'Rp. ' . number_format($jumlah * $harga, 0, ',', '.');
     $alamat = request('alamat');
-    $phone = '6282272726140';
+    $phone = '6282258727370';
     $text = "Halo, Saya ingin pesan *{$kuliner->name}* untuk *{$jumlah}* porsi.%0aalamat : *{$alamat}*%0aTerima kasih,%0a%0aTotal : *{$total}*";
     return Redirect::to("https://api.whatsapp.com/send?phone={$phone}&text={$text}");
 })->name('kuliner.order');

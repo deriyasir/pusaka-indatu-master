@@ -24,9 +24,7 @@
             <div class="alert alert-danger" role="alert">
                 <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
                 <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
-                    class="alert-link">disini</a> untuk mengirim
-                ulang email
-                verifikasi.
+                    class="alert-link">Disini</a> untuk mengirim ulang email verifikasi dan cek Inbox email Anda, jika tidak ada coba cek di Spam.
             </div>
             <form action="{{ route('verification.resend') }}" method="POST" id="resendEmail">
                 @csrf

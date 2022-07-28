@@ -11,7 +11,7 @@
                     {{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt="Sample Image"> --}}
                     <div class="hero-content">
                         <div>
-                            <h3><strong>kenal lebih dekat!</strong></h3>
+                            <h3><strong>Kenal lebih dekat!</strong></h3>
                             <p class="fw-light">Baca informasi kami lebih banyak</p>
                             <a href="/artikel" class="btn btn-sm btn-outline-light border-2">Lihat Artikel <i
                                     class="mdi mdi-arrow-right"></i></a>
