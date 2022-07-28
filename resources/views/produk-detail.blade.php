@@ -5,9 +5,9 @@
 @section('content')
     <section>
         <div class="row">
-            <div class="row col-md-9">
-                <div class="col-md-5 col-sm-12 mb-4">
-                    <div class="card p-2">
+            <div class="row col-md-9 col-sm-12 m-auto">
+                <div class="col-md-5 col-sm-12 mb-4 p-0">
+                    <div class="card p-2 w-100">
                         <img src="{{ asset('storage/products/' . $produk->image) }}" class="img-fluid" alt="image">
                     </div>
                 </div>
@@ -40,7 +40,7 @@
 
                 </div>
             </div>
-            <aside class="col-md-3">
+            <aside class="col-md-3 col-sm-12">
                 <div class="card p-3" style="width: 100%; position: sticky; top: 80px;" x-data="{ jumlah: 1, harga: '{{ $produk->price }}' }">
                     <small class="text-muted">Atur jumlah</small>
                     <hr>
@@ -78,9 +78,10 @@
     <section class="mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h6 class="text-muted m-0">Produk Lainnya</h4>
-            @if ($products->count() > 4)
-                <a href="{{ route('produk') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan Semua</a>
-            @endif
+                @if ($products->count() > 4)
+                    <a href="{{ route('produk') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan
+                        Semua</a>
+                @endif
         </div>
         <div id="produk" class="splide" aria-label="Produk Terbaru">
             <div class="splide__track py-2">

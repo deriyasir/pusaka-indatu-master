@@ -5,9 +5,9 @@
 @section('content')
     <section>
         <div class="row">
-            <div class="row col-md-9">
-                <div class="col-md-5 col-sm-12 mb-4">
-                    <div class="card p-2">
+            <div class="row col-md-9 col-sm-12 m-auto">
+                <div class="col-md-5 col-sm-12 mb-4 p-0">
+                    <div class="card p-2 w-100">
                         <img src="{{ asset('storage/foods/' . $kuliner->image) }}" class="img-fluid" alt="image">
                     </div>
                 </div>
@@ -55,7 +55,8 @@
                             <b>Perhatian!</b>
                             <br>
                             <small>
-                                Untuk saat ini cakupan Order hanya untuk wilayah Kabupaten <strong>Pidie</strong> dan <strong>Pidie Jaya</strong> saja.
+                                Untuk saat ini cakupan Order hanya untuk wilayah Kabupaten <strong>Pidie</strong> dan
+                                <strong>Pidie Jaya</strong> saja.
                             </small>
                         </p>
                     </div>
@@ -121,9 +122,10 @@
     <section class="mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h6 class="text-muted m-0">Produk Lainnya</h4>
-            @if ($kuliners->count() > 4)
-                <a href="{{ route('kuliner') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan Semua</a>
-            @endif
+                @if ($kuliners->count() > 4)
+                    <a href="{{ route('kuliner') }}" class="text-dark"><i class="mdi mdi-arrow-right"></i> Tampilkan
+                        Semua</a>
+                @endif
         </div>
         <div id="kuliner" class="splide" aria-label="Produk Terbaru">
             <div class="splide__track py-2">

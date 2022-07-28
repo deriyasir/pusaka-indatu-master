@@ -25,7 +25,7 @@
                 <textarea class="form-control" id="alamat" name="alamat"
                     placeholder="Jl. angsa, Lr. kucing No. 09, RT.09 RW.01, Desa Bebek, Kec. Panda">{{ $alamat->alamat }}</textarea>
             </div>
-            <div class="d-flex mb-2" style="gap: 10px">
+            <div class="d-flex flex-column flex-md-row mb-2" style="gap: 10px">
                 <div class="form-group w-100">
                     <label for="provinsi">Provinsi</label>
                     <select name="provinsi_id" id="provinsi" class="form-control" x-bind:disabled="!province_active"

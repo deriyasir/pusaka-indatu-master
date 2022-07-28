@@ -32,7 +32,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/produk', function () {
-    $products = Product::latest()->get();
+    $products = Product::filter()->latest()->get();
     return view('produk', compact('products'));
 })->name('produk');
 
@@ -43,7 +43,7 @@ Route::get('/produk/{produk:slug}', function (Product $produk) {
 })->name('produk.detail');
 
 Route::get('/kuliner', function () {
-    $kuliner = Food::latest()->get();
+    $kuliner = Food::filter()->latest()->get();
     return view('kuliner', compact('kuliner'));
 })->name('kuliner');
 
@@ -64,7 +64,7 @@ Route::post('/kuliner/{kuliner:slug}', function (Food $kuliner) {
 })->name('kuliner.order');
 
 Route::get('/artikel', function () {
-    $artikel = Blog::latest()->get();
+    $artikel = Blog::filter()->latest()->get();
     return view('artikel', compact('artikel'));
 })->name('artikel');
 
@@ -94,6 +94,25 @@ Route::group(['middleware' => ['auth', 'can:is_user']], function () {
         Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('checkout.callback');
         Route::put('/checkout/{order:no_order}/alamat', [CheckoutController::class, 'editAlamat'])->name('checkout.address');
         Route::resource('/alamat', AlamatController::class)->except(['show', 'index']);
+
+        Route::post('/ganti-password', function () {
+            request()->validate([
+                'password' => 'required|confirmed',
+            ]);
+            $user = Auth::user();
+            $user->update(['password' => bcrypt(request('password'))]);
+            return redirect()->route('profil')->with('success', 'Password berhasil diubah');
+        })->name('ganti-password');
+
+        Route::post('/ubah-profil', function () {
+            request()->validate([
+                'name' => 'required',
+                'phone' => 'required',
+            ]);
+            $user = Auth::user();
+            $user->update(request()->all());
+            return redirect()->route('profil')->with('success', 'Profil berhasil diubah');
+        })->name('ubah-profil');
 
         Route::get('detail-order/{order:no_order}', [CheckoutController::class, 'detailOrder'])->name('order.detail');
         Route::get('/cancel-order/{order:no_order}', [CheckoutController::class, 'cancelOrder'])->name('order.cancel');
