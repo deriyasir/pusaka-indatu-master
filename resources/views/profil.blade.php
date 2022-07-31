@@ -8,20 +8,20 @@
             <div class="mb-2">
                 <h6 class="text-muted">Profil</h6>
             </div>
-            <hr>
+        <hr>
         </div>
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="alert border-none alert-success">
                 {{ session('success') }}
             </div>
         @endif
         @if (session('error'))
-            <div class="alert alert-danger">
+            <div class="alert border-none alert-danger">
                 <strong>Opps!</strong> {{ session('error') }}
             </div>
         @endif
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert border-none alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -29,13 +29,13 @@
                 </ul>
             </div>
         @endif
-        @if (request('resend') == 'true')
-            <div class="alert alert-success mb-2">
+        @if (session('resend') == true || request('resend') == true)
+            <div class="alert border-none alert-success mb-2">
                 Email telah dikirim ulang, silahkan periksa email anda.
             </div>
         @endif
         @if (auth()->user()->email_verified_at == null)
-            <div class="alert alert-danger" role="alert">
+            <div class="alert border-none alert-danger" role="alert">
                 <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
                 <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
                     class="alert-link">disini</a> untuk mengirim
