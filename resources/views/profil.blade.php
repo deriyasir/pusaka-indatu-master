@@ -31,10 +31,10 @@
         @endif
         @if (session('resend') == true || request('resend') == true)
             <div class="alert border-none alert-success mb-2">
-                Email telah dikirim ulang, silahkan periksa email anda.
+                Email verifikasi telah dikirim, silahkan periksa email anda. klik <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
+                class="alert-link">disini</a> untuk mengirim ulang email verifikasi.
             </div>
-        @endif
-        @if (auth()->user()->email_verified_at == null)
+        @elseif (auth()->user()->email_verified_at == null)
             <div class="alert border-none alert-danger" role="alert">
                 <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
                 <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
