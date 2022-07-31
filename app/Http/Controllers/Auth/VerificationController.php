@@ -39,4 +39,19 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+    public function resend(Request $request)
+    {
+        if ($request->user()->hasVerifiedEmail()) {
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect($this->redirectPath());
+        }
+
+        $request->user()->sendEmailVerificationNotification();
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 202)
+            : redirect()->route('profil', ['resend' => 'true']);
+    }
 }
