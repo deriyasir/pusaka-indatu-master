@@ -21,8 +21,8 @@ class VerifyEmail extends VerifyEmailBase
             return call_user_func(static::$toMailCallback, $notifiable);
         }
         return (new MailMessage)
-            ->subject('Verifiasi Email')
-            ->line('Silahkan klik tombol dibawah untuk memverifikasi email anda.')
+            ->subject('Verifiasi Email Pusaka Indatu')
+            ->line('Silahkan klik tombol dibawah untuk memverifikasi email anda untuk dapat melanjutkan ke aplikasi Pusaka Indatu Kuliner.')
             ->action(
                 'Verifikasi Email',
                 $this->verificationUrl($notifiable)
