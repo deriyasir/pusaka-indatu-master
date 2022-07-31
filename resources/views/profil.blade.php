@@ -8,20 +8,20 @@
             <div class="mb-2">
                 <h6 class="text-muted">Profil</h6>
             </div>
-            <hr>
+        <hr>
         </div>
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="alert border-none alert-success">
                 {{ session('success') }}
             </div>
         @endif
         @if (session('error'))
-            <div class="alert alert-danger">
+            <div class="alert border-none alert-danger">
                 <strong>Opps!</strong> {{ session('error') }}
             </div>
         @endif
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert border-none alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -29,8 +29,13 @@
                 </ul>
             </div>
         @endif
-        @if (auth()->user()->email_verified_at == null)
-            <div class="alert alert-danger" role="alert">
+        @if (session('resend') == true || request('resend') == true)
+            <div class="alert border-none alert-success mb-2">
+                Email verifikasi telah dikirim, silahkan periksa email anda. klik <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
+                class="alert-link">disini</a> untuk mengirim ulang email verifikasi.
+            </div>
+        @elseif (auth()->user()->email_verified_at == null)
+            <div class="alert border-none alert-danger" role="alert">
                 <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
                 <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
                     class="alert-link">Disini</a> untuk mengirim ulang email verifikasi dan cek Inbox email Anda, jika tidak ada coba cek di Spam.

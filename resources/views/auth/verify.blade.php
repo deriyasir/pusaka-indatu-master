@@ -2,7 +2,7 @@
 
 @section('body')
     <script>
-        window.location.href = "{{ route('profil') }}";
+        window.location.href = "{{ route('profil') }}?resend=true";
     </script>
     <div class="container">
         <div class="row justify-content-center">
