@@ -29,6 +29,11 @@
                 </ul>
             </div>
         @endif
+        @if (request('resend') == 'true')
+            <div class="alert alert-success mb-2">
+                Email telah dikirim ulang, silahkan periksa email anda.
+            </div>
+        @endif
         @if (auth()->user()->email_verified_at == null)
             <div class="alert alert-danger" role="alert">
                 <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
