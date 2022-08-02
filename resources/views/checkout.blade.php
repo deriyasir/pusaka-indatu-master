@@ -119,8 +119,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('checkout.address', $order) }}" id="ongkir-form" method="POST"
-                        class="mb-2">
+                    <form action="{{ route('checkout.address', $order) }}" id="ongkir-form" method="POST" class="mb-2">
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-2">
@@ -181,7 +180,10 @@
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    {{--  --}}
+
+    <script type="text/javascript"
+        src="{{ env('MIDTRANS_IS_PRODUCTION') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}" defer></script>
 
     <script type="text/javascript">

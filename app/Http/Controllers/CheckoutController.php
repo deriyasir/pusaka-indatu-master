@@ -80,7 +80,7 @@ class CheckoutController extends Controller
         $dataongkir = $getOngkir['rajaongkir']['results'][0];
 
         Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        Config::$isProduction = false;
+        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
         Config::$isSanitized = true;
         Config::$is3ds = true;
 
@@ -121,22 +121,21 @@ class CheckoutController extends Controller
             'response' => $request->callback,
         ]);
 
-            $message= "Terima Kasih, Menunggu pembayaran selesai. pesanan anda anda akan diproses setelah pembayaran selesai";
+        $message = "Terima Kasih, Menunggu pembayaran selesai. pesanan anda anda akan diproses setelah pembayaran selesai";
 
         if (in_array($data->transaction_status, ['settlement', 'success'])) {
             $order->status = 'processing';
             $order->save();
 
-            $message= "Terima Kasih, Pembayaran berhasil. pesanan anda sedang diproses";
-
+            $message = "Terima Kasih, Pembayaran berhasil. pesanan anda sedang diproses";
         }
 
-        return redirect()->route('profil')->with('success',$message);
+        return redirect()->route('profil')->with('success', $message);
     }
 
     public function notification()
     {
-        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         $notif = new \Midtrans\Notification();
 

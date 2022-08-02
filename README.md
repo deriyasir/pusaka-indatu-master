@@ -47,6 +47,7 @@ RAJAONGKIR_URL=https://api.rajaongkir.com/starter
 
 MIDTRANS_SERVER_KEY=
 MIDTRANS_CLIENT_KEY=
+MIDTRANS_IS_PRODUCTION=false
 ```
 sama konfigurasi SMTP email juga di isi
 ```sh
