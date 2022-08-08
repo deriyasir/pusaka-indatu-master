@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', 'Profil')
 
 @section('content')
@@ -8,7 +7,7 @@
             <div class="mb-2">
                 <h6 class="text-muted">Profil</h6>
             </div>
-        <hr>
+            <hr>
         </div>
         @if (session('success'))
             <div class="alert border-none alert-success">
@@ -31,14 +30,16 @@
         @endif
         @if (session('resend') == true || request('resend') == true)
             <div class="alert border-none alert-success mb-2">
-                Email verifikasi telah dikirim, silahkan periksa email anda. klik <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
-                class="alert-link">disini</a> untuk mengirim ulang email verifikasi.
+                Email verifikasi telah dikirim, silahkan periksa email anda. klik <a style="cursor: pointer"
+                    onclick="document.getElementById('resendEmail').submit()" class="alert-link">disini</a> untuk mengirim
+                ulang email verifikasi.
             </div>
-        @elseif (auth()->user()->email_verified_at == null)
+        @elseif (!auth()->user()->hasVerifiedEmail())
             <div class="alert border-none alert-danger" role="alert">
                 <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
                 <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
-                    class="alert-link">Disini</a> untuk mengirim ulang email verifikasi dan cek Inbox email Anda, jika tidak ada coba cek di Spam.
+                    class="alert-link">Disini</a> untuk mengirim ulang email verifikasi dan cek Inbox email Anda, jika tidak
+                ada coba cek di Spam.
             </div>
             <form action="{{ route('verification.resend') }}" method="POST" id="resendEmail">
                 @csrf
