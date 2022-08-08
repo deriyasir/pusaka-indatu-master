@@ -36,10 +36,7 @@
             </div>
         @elseif (!auth()->user()->hasVerifiedEmail())
             <div class="alert border-none alert-danger" role="alert">
-                <strong>Perhatian!</strong> Anda belum melakukan verifikasi email. Silahkan klik
-                <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"
-                    class="alert-link">Disini</a> untuk mengirim ulang email verifikasi dan cek Inbox email Anda, jika tidak
-                ada coba cek di Spam.
+                <strong>Perhatian!</strong> Email Verifikasi Telah dikirim Ke Email Anda, Silahkan klik <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"class="alert-link">Disini</a> untuk mengirim ulang E-mail. Verifikasi Diperlukan Untuk Dapat Melakukan Pemesanan!
             </div>
             <form action="{{ route('verification.resend') }}" method="POST" id="resendEmail">
                 @csrf
