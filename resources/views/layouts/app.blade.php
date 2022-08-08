@@ -269,13 +269,13 @@
                     <span>Terhubung dengan kami di social media : </span>
                 </div>
                 <div>
-                    <a href="" class="me-4 text-reset">
+                    <a target="_blank" href="https://facebook.com/" class="me-4 text-reset">
                         <i class="mdi mdi-facebook"></i>
                     </a>
-                    <a href="" class="me-4 text-reset">
+                    <a target="_blank" href="https://twitter.com/" class="me-4 text-reset">
                         <i class="mdi mdi-twitter"></i>
                     </a>
-                    <a href="" class="text-reset">
+                    <a target="_blank" href="https://instagram.com/pusakaindatu5" class="text-reset">
                         <i class="mdi mdi-instagram"></i>
                     </a>
                 </div>
@@ -308,7 +308,7 @@
                             </h6>
                             <p>Jl. Banda Aceh - Medan, No. 2A, Lampoih Saka - Sigli</p>
                             <p>info@pusakaindatu.com</p>
-                            <p>+ 01 234 567 88</p>
+                            <p>+ 628 2258727370</p>
                         </div>
                     </div>
                 </div>

@@ -71,11 +71,13 @@
                                     <td class="fw-bold">Rp {{ number_format($order->harga_ongkir) }}</td>
                                 </tr>
                             </table>
-                            <div class="d-flex justify-content-start mt-3">
-                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop"><i class="mdi mdi-truck"></i> Ubah opsi
-                                    pengiriman</button>
-                            </div>
+                            @if ($order->token == null)
+                                <div class="d-flex justify-content-start mt-3">
+                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop"><i class="mdi mdi-truck"></i> Ubah opsi
+                                        pengiriman</button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -180,8 +182,6 @@
 @endsection
 
 @push('scripts')
-    {{--  --}}
-
     <script type="text/javascript"
         src="{{ env('MIDTRANS_IS_PRODUCTION') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}" defer></script>
@@ -189,12 +189,13 @@
     <script type="text/javascript">
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function() {
-            window.snap.pay('{{ $snapToken }}', {
+            let token = '{{ $snapToken }}';
+            window.snap.pay(token, {
                 onSuccess: function(result) {
-                    handleCallback(result);
+                    handleCallback(result, token);
                 },
                 onPending: function(result) {
-                    handleCallback(result);
+                    handleCallback(result, token);
                 },
                 onError: function(result) {
                     alert("payment failed!");
@@ -205,7 +206,8 @@
             })
         });
 
-        function handleCallback(result) {
+        function handleCallback(result, token) {
+            result.token = token;
             document.getElementById('callback-input').value = JSON.stringify(result);
             document.getElementById('callback-form').submit();
         }

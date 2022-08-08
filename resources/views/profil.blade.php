@@ -252,7 +252,7 @@
                                 @else
                                     <a class="btn btn-sm btn-info" href="{{ route('checkout', $order) }}">
                                         <i class="mdi mdi-cash-usd"></i>
-                                        Checkout
+                                        Bayar Pesanan
                                     </a>
                                     <a class="btn btn-sm btn-danger" href="{{ route('order.cancel', $order) }}">
                                         <i class="mdi mdi-close"></i>

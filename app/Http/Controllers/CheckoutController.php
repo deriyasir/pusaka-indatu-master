@@ -79,25 +79,29 @@ class CheckoutController extends Controller
         $getOngkir = RajaOngkirController::getCost(358, $kota, $order->getOrderWeight(),  $kurir);
         $dataongkir = $getOngkir['rajaongkir']['results'][0];
 
-        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        if ($order->token == null) {
+            Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+            Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
+            Config::$isSanitized = true;
+            Config::$is3ds = true;
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => $order->no_order . '|' . time(),
-                'gross_amount' => $order->total,
-            ),
-            'customer_details' => array(
-                'first_name' => $user->name,
-                'last_name' => '',
-                'email' => $user->email,
-                'phone' => $user->phone,
-            ),
-        );
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $order->no_order . '|' . time(),
+                    'gross_amount' => $order->total,
+                ),
+                'customer_details' => array(
+                    'first_name' => $user->name,
+                    'last_name' => '',
+                    'email' => $user->email,
+                    'phone' => $user->phone,
+                ),
+            );
 
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+        } else {
+            $snapToken = $order->token;
+        }
 
         return view('checkout', compact('order', 'items', 'alamat', 'dataongkir', 'snapToken'));
     }
@@ -105,21 +109,25 @@ class CheckoutController extends Controller
     public function callback(Request $request)
     {
         $data = json_decode($request->callback);
+        $getOrder = Order::where('token', $data->token)->first();
+        if (!$getOrder) {
+            $order = Order::where('no_order', explode('|', $data->order_id)[0])->get()->first();
+            $order->token = $data->token;
+            $order->save();
 
-        $order = Order::where('no_order', explode('|', $data->order_id)[0])->get()->first();
-
-        Transaction::create([
-            'order_id' => $order->id,
-            'mt_order_id' => $data->order_id,
-            'mt_transaction_id' => $data->transaction_id,
-            'transaction_status' => $data->transaction_status,
-            'status_message' => $data->status_message,
-            'payment_type' => $data->payment_type ?? '',
-            'payment_code' => $data->payment_code ?? '',
-            'store' => $data->store ?? '',
-            'settlement_time' => $data->settlement_time ?? '',
-            'response' => $request->callback,
-        ]);
+            Transaction::create([
+                'order_id' => $order->id,
+                'mt_order_id' => $data->order_id,
+                'mt_transaction_id' => $data->transaction_id,
+                'transaction_status' => $data->transaction_status,
+                'status_message' => $data->status_message,
+                'payment_type' => $data->payment_type ?? '',
+                'payment_code' => $data->payment_code ?? '',
+                'store' => $data->store ?? '',
+                'settlement_time' => $data->settlement_time ?? '',
+                'response' => $request->callback,
+            ]);
+        }
 
         $message = "Terima Kasih, Menunggu pembayaran selesai. pesanan anda anda akan diproses setelah pembayaran selesai";
 
