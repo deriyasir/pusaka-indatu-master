@@ -39,7 +39,7 @@
                 icon: 'success',
                 title: 'Berhasil',
                 text: '{{ session('success') }}',
-                showConfirmButton: false,
+                showConfirmButton: true,
                 // footer: "<small><a class='text-dark' href='{{ route('cart') }}'>Lihat Keranjang</a></small>"
             })
         </script>
