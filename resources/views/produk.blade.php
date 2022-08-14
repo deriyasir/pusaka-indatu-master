@@ -27,7 +27,7 @@
                                 <small class="text-muted">Rp {{ number_format($product->price) }}</small>
                             </div>
                             <div class="text-center">
-                                <a href="{{ route('add-to-cart', $product) }}"
+                                <a href="{{ route('add-to-cart', [$product, 'type' => 'add']) }}"
                                     class="btn btn-sm btn-outline-warning mb-2 w-100"><i class="fas fa-fw fa-plus"></i>
                                     Keranjang
                                 </a>

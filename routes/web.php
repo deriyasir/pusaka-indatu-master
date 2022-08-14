@@ -83,10 +83,15 @@ Route::group(['middleware' => ['auth', 'can:is_user']], function () {
         return view('profil');
     })->name('profil');
 
+    Route::get('/pesanan-saya', function () {
+        return view('pesanan-saya');
+    })->name('pesanan-saya');
+
     Route::group(['middleware' => 'verified'], function () {
         Route::get('/keranjang', function () {
             $keranjang = Auth::user()->cart;
-            return view('cart', compact('keranjang'));
+            $alamat = Auth::user()->alamat;
+            return view('cart', compact('keranjang', 'alamat'));
         })->name('cart');
 
         Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
@@ -123,12 +128,12 @@ Route::group(['middleware' => ['auth', 'can:is_user']], function () {
                 ['product_id' => $product->id],
                 ['quantity' => request('qty') ?? 1]
             );
-            return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
+            return redirect()->back()->with('success', request('type') == 'add' ? 'Produk berhasil ditambahkan ke keranjang' : 'Jumlah produk berhasil diubah');
         })->name('add-to-cart');
 
         Route::get('/remove-from-cart/{product:slug}', function (Product $product) {
             auth()->user()->cart()->where('product_id', $product->id)->delete();
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Produk berhasil dihapus dari keranjang');
         })->name('remove-from-cart');
     });
 });

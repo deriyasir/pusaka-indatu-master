@@ -62,7 +62,7 @@
                             <h6 class="text-muted">Subtotal</h6>
                             <h3><b>Rp <span x-text="new Intl.NumberFormat('en-US',).format(harga * jumlah)"></span></b></h3>
                         </div>
-                        <a x-bind:href="'{{ route('add-to-cart', $produk) }}?qty=' + jumlah"
+                        <a x-bind:href="'{{ route('add-to-cart', [$produk, 'type' => 'add']) }}?qty=' + jumlah"
                             class="btn btn-sm btn-outline-warning mb-2 w-100  mt-3"><i class="mdi mdi-cart-outline"></i>
                             Tambah
                             Keranjang

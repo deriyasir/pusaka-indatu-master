@@ -36,7 +36,10 @@
             </div>
         @elseif (!auth()->user()->hasVerifiedEmail())
             <div class="alert border-none alert-danger" role="alert">
-                <strong>Perhatian!</strong> Email Verifikasi Telah dikirim Ke Email Anda, Silahkan klik <a style="cursor: pointer" onclick="document.getElementById('resendEmail').submit()"class="alert-link">Disini</a> untuk mengirim ulang E-mail. Verifikasi Diperlukan Untuk Dapat Melakukan Pemesanan!
+                <strong>Perhatian!</strong> Email Verifikasi Telah dikirim Ke Email Anda, Silahkan klik <a
+                    style="cursor: pointer"
+                    onclick="document.getElementById('resendEmail').submit()"class="alert-link">Disini</a> untuk mengirim
+                ulang E-mail. Verifikasi Diperlukan Untuk Dapat Melakukan Pemesanan!
             </div>
             <form action="{{ route('verification.resend') }}" method="POST" id="resendEmail">
                 @csrf
@@ -204,74 +207,12 @@
         </div>
     </div>
 
-
-    <section>
-        <div class="mb-2">
-            <h6 class="text-muted">Riwayat Pesanan</h6>
-        </div>
-        <hr>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Order</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                        <th>Tanggal</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (auth()->user()->orders()->latest()->get() as $order)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td class="fw-bold">{{ $order->no_order }}</td>
-                            <td>
-                                {!! $order->getStatus() !!}
-                            </td>
-                            <td class="fw-bold">Rp {{ number_format($order->total) }}</td>
-                            <td>{{ $order->created_at->format('d/m/Y') }}</td>
-                            <td>
-                                @if ($order->isPaid())
-                                    <a class="btn btn-sm btn-warning" href="{{ route('order.detail', $order) }}">
-                                        <i class="mdi mdi-eye"></i>
-                                        Lihat
-                                    </a>
-                                    @if ($order->status == 'sending')
-                                        <a class="btn btn-sm btn-success" href="{{ route('order.done', $order) }}">
-                                            <i class="mdi mdi-check"></i>
-                                            Pesanan diterima
-                                        </a>
-                                    @endif
-                                @elseif($order->status == 'cancelled')
-                                    <span>-</span>
-                                @else
-                                    <a class="btn btn-sm btn-info" href="{{ route('checkout', $order) }}">
-                                        <i class="mdi mdi-cash-usd"></i>
-                                        Bayar Pesanan
-                                    </a>
-                                    <a class="btn btn-sm btn-danger" href="{{ route('order.cancel', $order) }}">
-                                        <i class="mdi mdi-close"></i>
-                                        Batalkan
-                                    </a>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <style>
-                td,
-                th {
-                    white-space: nowrap;
-                    padding: 10px 20px !important;
-                }
-            </style>
-        </div>
-    </section>
-
     <section class="d-block d-md-none">
+        <a class="btn btn-warning mt-3 w-100" href="{{ route('pesanan-saya') }}">
+            <i class="mdi mdi-shopping"></i>
+            {{ __('Pesanan Saya') }}
+        </a>
+
         <a class="btn btn-danger mt-3 w-100" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();">

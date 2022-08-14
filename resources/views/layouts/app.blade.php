@@ -37,10 +37,10 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                title: 'Good job!',
+                title: 'Berhasil',
                 text: '{{ session('success') }}',
                 showConfirmButton: false,
-                footer: "<small><a href='{{ route('cart') }}'>Lihat Keranjang</a></small>"
+                // footer: "<small><a class='text-dark' href='{{ route('cart') }}'>Lihat Keranjang</a></small>"
             })
         </script>
     @endif
@@ -119,6 +119,10 @@
                                         <a class="dropdown-item" href="{{ route('profil') }}">
                                             <i class="mdi mdi-account"></i>
                                             Profil
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('pesanan-saya') }}">
+                                            <i class="mdi mdi-shopping"></i>
+                                            Pesanan Saya
                                         </a>
                                     @endcan
                                     <a class="dropdown-item" href="{{ route('logout') }}"
