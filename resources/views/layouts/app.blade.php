@@ -29,9 +29,21 @@
     @stack('styles')
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.26/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                // footer: "<small><a class='text-dark' href='{{ route('cart') }}'>Lihat Keranjang</a></small>"
+            })
+        </script>
+    @endif
     <div id="app">
         {{-- navbar untuk desktop --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-none d-md-block">
@@ -107,6 +119,10 @@
                                         <a class="dropdown-item" href="{{ route('profil') }}">
                                             <i class="mdi mdi-account"></i>
                                             Profil
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('pesanan-saya') }}">
+                                            <i class="mdi mdi-shopping"></i>
+                                            Pesanan Saya
                                         </a>
                                     @endcan
                                     <a class="dropdown-item" href="{{ route('logout') }}"

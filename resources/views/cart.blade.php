@@ -8,7 +8,7 @@
             <h4 class="text-muted">Keranjang</h4>
         </div>
         <hr>
-        <div id="keranjang" x-data="{ jumlah: 1, harga: '{{ auth()->user()->getCartTotal() }}' }">
+        <div id="keranjang">
             @if ($keranjang->count() > 0)
                 <div class="row">
                     <div class="col-md-8">
@@ -58,27 +58,81 @@
                         @endforeach
                     </div>
                     <aside class="col-md-4">
-                        <div class="card p-3" style="width: 100%; position: sticky; top: 80px;">
-                            <small class="text-muted">Rincian Pembayaran</small>
-                            <hr>
-                            <ol class="list-group border-0">
-                                <li
-                                    class="list-group-item d-flex justify-content-between border-0 p-0 pb-2 align-items-start">
-                                    <div class="me-auto text-muted">
-                                        <small>Total Belanja ({{ $keranjang->count() }} Produk)</small>
-                                    </div>
-                                    <span>Rp {{ number_format(auth()->user()->getCartTotal()) }}</span>
-                                </li>
-                            </ol>
-                            <div class="d-flex justify-content-between">
-                                <h6 class="text-muted">Subtotal</h6>
-                                <h3><b>Rp <span x-text="new Intl.NumberFormat('en-US').format(harga * jumlah)"></span></b>
-                                </h3>
+                        <div x-data="rajaOngkir" style="width: 100%; position: sticky; top: 80px;">
+                            <div class="card p-3">
+                                <small class="text-muted">Rincian Pembayaran</small>
+                                <hr>
+                                <ol class="list-group border-0">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between border-0 p-0 pb-2 align-items-start">
+                                        <div class="me-auto text-muted">
+                                            <small>Total Belanja ({{ $keranjang->count() }} Produk)</small>
+                                        </div>
+                                        <span>Rp {{ number_format(auth()->user()->getCartTotal()) }}</span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between border-0 p-0 pb-2 align-items-start">
+                                        <div class="me-auto text-muted">
+                                            <small>Ongkos Kirim</small>
+                                        </div>
+                                        <span>Rp <span
+                                                x-text="new Intl.NumberFormat('en-US').format(hargaOngkir)"></span></span>
+                                    </li>
+                                </ol>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="text-muted">Subtotal</h6>
+                                    <h3><b>Rp <span
+                                                x-text="new Intl.NumberFormat('en-US').format(total + hargaOngkir)"></span></b>
+                                    </h3>
+                                </div>
+                                <form action="{{ route('checkout.store') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button class="btn btn-warning text-white w-100 mt-4">Buat Pesanan</button>
+                                </form>
                             </div>
-                            <form action="{{ route('checkout.store') }}" method="POST" class="d-inline">
-                                @csrf
-                                <button class="btn btn-warning text-white w-100 mt-4">Checkout Barang</button>
-                            </form>
+                            <div class="card mt-3 p-3" x-init="initial()">
+                                <div class="detail-pesanan">
+                                    <div class="form-group mb-2">
+                                        <small>Pilih Alamat</small>
+                                        <select class="form-control" name="alamat" class="w-100 mt-3"
+                                            style="padding: 10px 10px !important; font-size: 12px" x-model="address"
+                                            x-on:change="getCost()">
+                                            @foreach ($alamat as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->getFullAddress() }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <small>Pilih Kurir</small>
+                                        <select class="form-control" name="kurir" class="w-100 mt-3"
+                                            style="padding: 10px 10px !important; font-size: 12px" x-model="courier"
+                                            x-on:change="getCost()">
+                                            <option value="tiki">TIKI</option>
+                                            <option value="jne">JNE</option>
+                                            <option value="pos">POS Indonesia
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small>Jenis Pengiriman</small>
+                                    <template x-for="(cost, i) in costs">
+                                        <label x-bind:id="'ongkir-' + i"
+                                            class="d-flex border p-3 justify-content-between align-items-center rounded-3 mb-2"
+                                            x-on:click="selected = cost.service; hargaOngkir = cost.cost[0].value"
+                                            :class="{ 'border-warning': selected == cost.service }" style="cursor: pointer">
+                                            <div>
+                                                <h5 class="fw-bold" x-text="cost.service"></h5>
+                                                <p class="m-0">Rp <span
+                                                        x-text="new Intl.NumberFormat('en-US').format(cost.cost[0].value)"></span>
+                                                </p>
+                                            </div>
+                                            <p class="m-0" x-text="cost.cost[0].etd.split(' ')[0] + ' HARI'"></p>
+                                            <input type="radio" x-bind:id="'ongkir-' + i" x-bind:value="cost.service">
+                                        </label>
+                                    </template>
+                                </div>
+                            </div>
                         </div>
                     </aside>
                 </div>
@@ -93,3 +147,36 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        function rajaOngkir() {
+            return {
+                costs: [],
+                address: '{{ $alamat->first()->id }}',
+                weight: '{{ auth()->user()->getCartWeight() }}',
+                courier: 'jne',
+                selected: '',
+                hargaOngkir: 0,
+                total: '',
+                initial() {
+                    this.getCost();
+                    this.total = parseInt('{{ auth()->user()->getCartTotal() }}') + this.hargaOngkir;
+                },
+                getCost() {
+                    fetch(`/api/get-cost/358/${this.address}/${this.weight}/${this.courier}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            this.costs = data.rajaongkir.results[0].costs
+                            console.log(this.costs[0].cost[0].value);
+                            this.hargaOngkir = this.costs[0].cost[0].value
+                            this.selected = this.costs[0].service
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+            }
+        }
+    </script>
+@endpush

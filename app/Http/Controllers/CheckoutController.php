@@ -219,7 +219,7 @@ class CheckoutController extends Controller
         $order->status = 'cancelled';
         $order->save();
 
-        return redirect()->route('profil')->with('success', 'Pesanan anda telah dibatalkan');
+        return redirect()->route('pesanan-saya')->with('success', 'Pesanan anda telah dibatalkan');
     }
 
     public function doneOrder(Order $order)
@@ -227,7 +227,7 @@ class CheckoutController extends Controller
         $order->status = 'done';
         $order->save();
 
-        return redirect()->route('profil')->with('success', 'Terima kasih sudah berbelanja di toko kami');
+        return redirect()->route('pesanan-saya')->with('success', 'Terima kasih sudah berbelanja di toko kami');
     }
 
     public function detailOrder(Order $order)
