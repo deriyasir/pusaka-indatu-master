@@ -32,6 +32,17 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Good job!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                footer: "<small><a href='{{ route('cart') }}'>Lihat Keranjang</a></small>"
+            })
+        </script>
+    @endif
     <div id="app">
         {{-- navbar untuk desktop --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-none d-md-block">

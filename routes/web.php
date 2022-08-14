@@ -123,7 +123,7 @@ Route::group(['middleware' => ['auth', 'can:is_user']], function () {
                 ['product_id' => $product->id],
                 ['quantity' => request('qty') ?? 1]
             );
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
         })->name('add-to-cart');
 
         Route::get('/remove-from-cart/{product:slug}', function (Product $product) {
